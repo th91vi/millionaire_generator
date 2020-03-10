@@ -30,4 +30,31 @@ async function getRandomUser() {
 // adiciona novo objeto ao array data
 function addData(obj){
     data.push(obj);
+
+    updateDOM();
 }
+
+// atualiza o DOM
+function updateDOM(providedData = data){
+    // limpa div main
+    main.innerHTML = '<h2><strong>Person</strong>Wealth</h2>';
+
+    providedData.forEach(item => {
+        const element = document.createElement('div');
+        element.classList.add('person');
+        element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`;
+        main.appendChild(element);
+    })
+}
+
+//formata numero como dinheiro
+function formatMoney(number) {
+    // return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    return number.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+}
+
+// event listeners
+addUserBtn.addEventListener('click', getRandomUser);
