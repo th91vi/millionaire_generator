@@ -1,6 +1,6 @@
 const main = document.getElementById('main');
 const addUserBtn = document.getElementById('add-user');
-const doubleBtn = document.getElementById('ouble');
+const doubleBtn = document.getElementById('double');
 const showMillionairesBtn = document.getElementById('show-millionaires');
 const sortBtn = document.getElementById('sort');
 const calculateWealthBtn = document.getElementById('calculate-wealth');
@@ -26,6 +26,15 @@ async function getRandomUser() {
 
     addData(newUser);
 }
+
+// dobra dinheiro de usuários
+function doubleMoney(){
+    data = data.map(user => {
+        return { ...user, money: user.money * 2 };
+    });
+
+    updateDOM();
+};
 
 // adiciona novo objeto ao array data
 function addData(obj){
@@ -58,3 +67,4 @@ function formatMoney(number) {
 
 // event listeners
 addUserBtn.addEventListener('click', getRandomUser);
+doubleBtn.addEventListener('click', doubleMoney);
