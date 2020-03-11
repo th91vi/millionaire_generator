@@ -1,7 +1,7 @@
 const main = document.getElementById('main');
 const addUserBtn = document.getElementById('add-user');
 const doubleBtn = document.getElementById('double');
-const showMillionairesBtn = document.getElementById('show-millionaires');
+const showOnlyMillionairesBtn = document.getElementById('show-millionaires');
 const sortBtn = document.getElementById('sort');
 const calculateWealthBtn = document.getElementById('calculate-wealth');
 
@@ -36,8 +36,16 @@ function doubleMoney(){
     updateDOM();
 };
 
+// ordenar por riqueza
 function sortByRichest(){
     data.sort((a,b) => b.money - a.money); // função comparativa é decrescente
+
+    updateDOM();
+}
+
+// mostra apenas milionarios
+function showOnlyMillionaires(){
+    data = data.filter(user => user.money > 1000000);
 
     updateDOM();
 }
@@ -75,3 +83,4 @@ function formatMoney(number) {
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
 sortBtn.addEventListener('click', sortByRichest);
+showOnlyMillionairesBtn.addEventListener('click', showOnlyMillionaires);
